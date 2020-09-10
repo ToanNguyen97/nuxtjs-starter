@@ -1,4 +1,5 @@
 
+import { projects } from "./utils/projectsData";
 export default {
   mode: 'universal',
   /*
@@ -15,6 +16,18 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
 	{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=PT+Sans:300,400,700,800'}
     ]
+  },
+
+  generate: {
+    async routes() {
+      const paths = [];
+
+      projects.forEach(project => {
+        paths.push(`/project/${project.slug}`);
+      });
+
+      return paths;
+    }
   },
   /*
   ** Customize the progress-bar color
